@@ -17,7 +17,7 @@ var SOCKET_LIST = {};
 var io = require('socket.io')(serv,{});
 io.on('connection', function(socket){
     socket.id = Math.random();
-    console.log('user connected');
+    console.log('user connected', socket.id);
 
     socket.on('disconnect', function(){
         console.log("user disconnected");
