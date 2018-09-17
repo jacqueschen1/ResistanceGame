@@ -13,9 +13,15 @@ console.log("Server started");
 
 console.log('Hello world');
 
+var SOCKET_LIST = {};
 var io = require('socket.io')(serv,{});
 io.on('connection', function(socket){
-	console.log('socket connection');
+    socket.id = Math.random();
+    console.log('user connected');
+
+    socket.on('disconnect', function(){
+        console.log("user disconnected");
+    });
 });
 
 
