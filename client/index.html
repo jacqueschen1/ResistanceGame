@@ -1,17 +1,22 @@
-
-
+<!DOCTYPE html>
+<html>
 
 <body>
-    <form action="addplayer(value)">
-        Name: <input type="text" name="FirstName" value="Mickey"><br>
-        <input type="submit" value="Submit">
-        </form>
+    <div id="createperson">
+        Name: <input id="names" type="text" placeholder="name"/>
+        <button id="create">Add Player</button>
+    </div>
+    <div id="startbutton">
+        <button id="startgame">Start</button>
+    </div>
+    <span id="role"></span>    
+    <div id="others"></div> 
 
 
 
 </body>
-<script src="/js/script.js"></script>
-<script>
-var socket = io();
-</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/client/js/script.js"></script>
 
+
+</html>
