@@ -2,22 +2,53 @@
 const Player = require('./player.js');
 
 class Game { 
-	constructor(missionnum){
-		this.players = new Array();
-		this.gameover = false;
-		this.roundresults = new Array();
-		this.missionnum = missionnum;
+	constructor(missionnum, array){
+		this.Players = array;
+		this.Gameover = false;
+		this.PassCount = 0;
+		this.DefeatCount = 0;
+		this.MissionNum = missionnum;
 	}
 	
-	addplayer(p){
-		this.players.push(p)
+	getPlayers(){
+		return this.Players;
 	}
 	
-	addresult(result){
-		this.roundresults.push(result);
+	getMissionNum(){
+		return this.MissionNum;
 	}
 
-	assignroles(){
+	getBadGuys(){
+		var BadGuys = []
+		for(var i = 0; i<this.Players.length; i++){
+			var Player = this.Players[i];
+			if(!Player.type){
+				BadGuys.push(Player.name);
+			}
+		}
+		return BadGuys;
+	}
+
+	getMerlin(){
+		for(var i = 0; i<this.Players.length; i++){
+			var Player = this.Players[i];
+			if(!Player.merlin){
+				return Player.name;
+			}
+		}
+		return BadGuys;
+	}
+
+
+	addPlayer(p){
+		this.Players.push(p)
+	}
+	
+	addResult(result){
+		this.RoundResults.push(result);
+	}
+
+	assignRoles(){
         Array.prototype.makerand = function(){
             var x = Math.floor(Math.random() * this.length);
             return x;
@@ -29,7 +60,7 @@ class Game {
             this.splice(x,1);
         }
 
-        var current_players = this.players.slice();
+        var current_players = this.Players.slice();
         
         var rand = current_players.makerand();
         current_players[rand].setmerlin();
@@ -53,20 +84,20 @@ class Game {
 
 	}
 	
-	checkgameover(){
-		var list = roundresults;
-		var length = list.length;
-		var index = array_keys(list, true);
-		var index_win = index.length
-		var index_lose = length - index_win
+	// checkGameOver(){
+	// 	var list = roundresults;
+	// 	var length = list.length;
+	// 	var index = array_keys(list, true);
+	// 	var index_win = index.length
+	// 	var index_lose = length - index_win
 		
-		if(index_win > 2){
-			console.log("good guys win!");
-			gameover = true;
-		}else if(index_lose > 2){
-			console.log("bad guys win!");
-			gameover = true;
-		}
-	}
+	// 	if(index_win > 2){
+	// 		console.log("good guys win!");
+	// 		gameover = true;
+	// 	}else if(index_lose > 2){
+	// 		console.log("bad guys win!");
+	// 		gameover = true;
+	// 	}
+	// }
 }	
 module.exports = Game;
