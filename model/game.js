@@ -1,13 +1,36 @@
 //Game Object
 const Player = require('./player.js');
 
+//MissionNum Class
+class MissionNum {
+	constructor(num, fails){
+		this.num = num;
+		this.fails = fails;
+	}
+}
+module.exports = MissionNum;
+
+const two_one = new MissionNum(2, 1);
+const three_one = new MissionNum(3, 1);
+const four_one = new MissionNum(4, 1);
+const five_one = new MissionNum(5, 1);
+const four_two = new MissionNum(4, 2);
+const five_two = new MissionNum(5, 2);
+
+const fivep = [two_one, three_one, two_one, three_one, three_one];
+const sixp = [two_one, three_one, four_one, three_one, four_one];
+const sevenp = [two_one, three_one, three_one, four_two, four_one];
+const eightp = [three_one, four_one, four_one, five_two, five_one];
+const ninep = [three_one, four_one, four_one, five_two, five_one];
+const tenp = [three_one, four_one, four_one, five_two, five_one];
+
 class Game { 
-	constructor(missionnum, array){
+	constructor(array){
 		this.Players = array;
 		this.Gameover = false;
 		this.PassCount = 0;
 		this.DefeatCount = 0;
-		this.MissionNum = missionnum;
+		this.MissionNum = null;
 	}
 	
 	getPlayers(){
@@ -46,6 +69,37 @@ class Game {
 	
 	addResult(result){
 		this.RoundResults.push(result);
+	}
+
+	checkNumbers(){
+		if(this.Players.length < 5 || this.Players.length > 10){
+			return false;
+		}else {return true;
+		};
+	}
+
+	setMissionNum(){
+		if(this.Players.length == 5){
+			return fivep;
+		}
+		if(this.Players.length == 6){
+			return sixp;
+		}
+		if(this.Players.length == 7){
+			return sevenp;
+		}
+		if(this.Players.length == 8){
+			return eightp;
+		}
+		if(this.Players.length == 9){
+			return ninep;
+		}
+		if(this.Players.length == 10){
+			return tenp;
+		}
+		else{
+			alert("Not enough/Too many players!");
+		};
 	}
 
 	assignRoles(){
@@ -101,3 +155,4 @@ class Game {
 	// }
 }	
 module.exports = Game;
+

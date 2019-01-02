@@ -1,11 +1,12 @@
  //Player Object
 
 class Player {
-	constructor(name){
+	constructor(name, socketid){
 	this._Name = name;
 	this._Type = true; //true is good
 	this._Merlin = false;
 	this._Percivil = false;
+	this._Id = socketid;
 	}
 	
 	//Getters
@@ -22,6 +23,10 @@ class Player {
 	}
 	get percivil(){
 		return this._Percivil;
+	}
+
+	get id(){
+		return this._Id;
 	}
 	
 	//Setters
