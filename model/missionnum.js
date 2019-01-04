@@ -1,6 +1,6 @@
-//MissionNum Class
+// MissionNum Class
 class MissionNum {
-	constructor(num, fails){
+	constructor(num, fails) {
 		this.num = num;
 		this.fails = fails;
 	}

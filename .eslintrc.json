@@ -1,0 +1,16 @@
+{
+    "extends": "google",
+
+    "env": {
+        "es6": true
+    },
+    "rules": {
+        "linebreak-style": 0,
+        "new-cap": 0,
+        "indent": ["error", "tab"],
+        "require-jsdoc": "off",
+        "no-unused-vars": "warn",
+        "no-tabs": "off",
+        "no-extend-native": ["error", { "exceptions": ["Array"] }]
+    }
+}

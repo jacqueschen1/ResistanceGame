@@ -1,10 +1,10 @@
-//Game Object
+// Game Object
 const Player = require('./player.js');
 const Round = require('./round.js');
 const Preset = require('./missionpreset');
 
-class Game { 
-	constructor(array){
+class Game {
+	constructor(array) {
 		this.players = array;
 		this.gameOver = false;
 		this.passCount = 0;
@@ -12,30 +12,30 @@ class Game {
 		this.missionNum = null;
 		this.turn = 0;
 	}
-	
-	getPlayers(){
+
+	getPlayers() {
 		return this.players;
 	}
-	
-	getMissionNum(){
+
+	getMissionNum() {
 		return this.missionNum;
 	}
 
-	getBadGuys(){
-		var BadGuys = []
-		for(var i = 0; i<this.players.length; i++){
-			var Player = this.players[i];
-			if(!Player.type){
+	getBadGuys() {
+		const BadGuys = [];
+		for (let i = 0; i<this.players.length; i++) {
+			const Player = this.players[i];
+			if (!Player.type) {
 				BadGuys.push(Player.name);
 			}
 		}
 		return BadGuys;
 	}
 
-	getMerlin(){
-		for(var i = 0; i<this.players.length; i++){
-			var Player = this.players[i];
-			if(!Player.merlin){
+	getMerlin() {
+		for (let i = 0; i<this.players.length; i++) {
+			const Player = this.players[i];
+			if (!Player.merlin) {
 				return Player.name;
 			}
 		}
@@ -43,94 +43,92 @@ class Game {
 	}
 
 
-	addPlayer(p){
-		this.players.push(p)
+	addPlayer(p) {
+		this.players.push(p);
 	}
-	
-	addResult(result){
+
+	addResult(result) {
 		this.RoundResults.push(result);
 	}
 
-	checkNumbers(){
-		if(this.players.length < 5 || this.players.length > 10){
+	checkNumbers() {
+		if (this.players.length < 5 || this.players.length > 10) {
 			return false;
-		}else {return true;
+		} else {
+			return true;
 		};
 	}
 
-	setMissionNum(){
-		if(this.players.length == 5){
-			return Preset.fivep;
+	setMissionNum() {
+		if (this.players.length == 5) {
+			return Preset.twoOne;
 		}
-		if(this.players.length == 6){
-			return Preset.sixp;
+		if (this.players.length == 6) {
+			return Preset.twoOne;
 		}
-		if(this.players.length == 7){
-			return Preset.sevenp;
+		if (this.players.length == 7) {
+			return Preset.twoOne;
 		}
-		if(this.players.length == 8){
-			return Preset.eightp;
+		if (this.players.length == 8) {
+			return Preset.threeOne;
 		}
-		if(this.players.length == 9){
-			return Preset.ninep;
+		if (this.players.length == 9) {
+			return Preset.threeOne;
 		}
-		if(this.players.length == 10){
-			return Preset.tenp;
-		}
-		else{
-			alert("Not enough/Too many players!");
+		if (this.players.length == 10) {
+			return Preset.threeOne;
+		} else {
+			alert('Not enough/Too many players!');
 		};
 	}
 
-	assignRoles(){
-        Array.prototype.makerand = function(){
-            var x = Math.floor(Math.random() * this.length);
-            return x;
-        };
+	assignRoles() {
+		Array.prototype.makerand = function() {
+			const x = Math.floor(Math.random() * this.length);
+			return x;
+		};
 
-        Array.prototype.addbad = function(){
-            var x = this.makerand();
-            this[x].setbad();
-            this.splice(x,1);
-        }
+		Array.prototype.addbad = function() {
+			const x = this.makerand();
+			this[x].setbad();
+			this.splice(x, 1);
+		};
 
-        var current_players = this.players.slice();
-        
-        var rand = current_players.makerand();
-        current_players[rand].setmerlin();
-        current_players.splice(rand,1);
+		const currentPlayers = this.players.slice();
 
-        var rand2 = current_players.makerand();
-        current_players[rand2].setpercival();
-        current_players.splice(rand2,1);
+		const rand = currentPlayers.makerand();
+		currentPlayers[rand].setmerlin();
+		currentPlayers.splice(rand, 1);
 
-        current_players.addbad();
-        current_players.addbad();
-        var length = current_players.length;
+		const rand2 = currentPlayers.makerand();
+		currentPlayers[rand2].setpercival();
+		currentPlayers.splice(rand2, 1);
 
-        if (length == 6){
-            current_players.addbad();
-        }
-        var length = current_players.length;
-        if (length == 5 || length == 4 || length == 3 ){
-            current_players.addbad();
-        }
+		currentPlayers.addbad();
+		currentPlayers.addbad();
+		let length = currentPlayers.length;
 
+		if (length == 6) {
+			currentPlayers.addbad();
+		}
+		length = currentPlayers.length;
+		if (length == 5 || length == 4 || length == 3 ) {
+			currentPlayers.addbad();
+		}
 	}
 
-	startRound(){
-		if (this.missionNum != null){
-			let turn = (this.turn % (this.players.length));
-			console.log("round start");
-			let round = new Round(this.players[turn]);
-			//if(round.passed()){
+	startRound() {
+		if (this.missionNum != null) {
+			const turn = (this.turn % (this.players.length));
+			console.log('round start');
+			const round = new Round(this.players[turn]);
+			// if(round.passed()){
 			//	this.PassCount++;
-			//}else{
+			// }else{
 			//	this.DefeatCount++;
-			//}
+			// }
 		}
 	}
-	
 	// checkGameOver(){
 	// 	var list = roundresults;
 	// 	var length = list.length;
@@ -146,6 +144,6 @@ class Game {
 	// 		gameover = true;
 	// 	}
 	// }
-}	
+}
 module.exports = Game;
 

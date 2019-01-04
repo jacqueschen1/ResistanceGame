@@ -1,70 +1,69 @@
- //Player Object
+// Player Object
 
 class Player {
-	constructor(name, socketid){
-	this._name = name;
-	this._type = true; //true is good
-	this._merlin = false;
-	this._percival = false;
-	this._id = socketid;
+	constructor(name, socketid) {
+		this._name = name;
+		this._type = true; // true is good
+		this._merlin = false;
+		this._percival = false;
+		this._id = socketid;
 	}
-	
-	//Getters
-	get name(){
+
+	// Getters
+	get name() {
 		return this._name;
 	}
-	
-	get type(){
+
+	get type() {
 		return this._type;
 	}
-	
-	get merlin(){
+
+	get merlin() {
 		return this._merlin;
 	}
-	get percival(){
+	get percival() {
 		return this._percival;
 	}
 
-	get id(){
+	get id() {
 		return this._id;
 	}
-	
-	//Setters
-	
-	set type(newtype){
+
+	// Setters
+
+	set type(newtype) {
 		this._type = newtype;
 	}
-	
-	set merlin(ismerlin){
+
+	set merlin(ismerlin) {
 		this._merlin = ismerlin;
 	}
-	
-	set percival(ispercivil){
+
+	set percival(ispercivil) {
 		this._percival = ispercivil;
 	}
 
-	setmerlin(){
+	setmerlin() {
 		this._merlin = true;
 	}
 
-	setpercival(){
+	setpercival() {
 		this._percival = true;
 	}
-	
-	setbad(){
+
+	setbad() {
 		this.type = false;
 	}
-	
-	//MODIFIES: Round
-	vote(){
-	
-	}
-	
-	//MODIFIES: Round
-	choose(){
+
+	// MODIFIES: Round
+	vote() {
+
 	}
 
+	// MODIFIES: Round
+	choose() {
 
+	}
 }
 
 module.exports = Player;
