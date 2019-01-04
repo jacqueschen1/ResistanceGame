@@ -3,7 +3,7 @@ var socket = io();
 
 var names = document.getElementById('names'),
     create = document.getElementById('create');
-
+    players = null;
 
 create.addEventListener('click', function(){
 
@@ -31,13 +31,15 @@ socket.on('playererror', function(){
 socket.on('merlinPage', function(data){
     document.getElementById("role").innerHTML="Hi " + data.p_name + ", you are merlin";
     document.getElementById("others").innerHTML="The bad guys are: " + data.badGuys.join(", ");
+    players = data.players;
+    console.log(players)
     console.log("Hi " + data.p_name + ", you are merlin");
 });
 
-socket.on('percivilPage', function(data){
+socket.on('percivalPage', function(data){
     document.getElementById("role").innerHTML="Hi " + data.p_name + ", you are percival";
     document.getElementById("others").innerHTML="The merlin is: " + data.merlin;
-    console.log("Hi " + data.p_name + ", you are percivil");
+    console.log("Hi " + data.p_name + ", you are percival");
 });
 
 socket.on('badguyPage', function(data){
@@ -54,4 +56,9 @@ socket.on('goodguyPage', function(data){
 socket.on('removeSignup', function(){
     document.getElementById('createperson').remove();
     document.getElementById('startbutton').remove();
+});
+
+socket.on('yourTurn', function(data){
+    document.getElementById('pick').innerHTML= data.player + ", please pick your players";
+    console.log("Msg sent");
 });

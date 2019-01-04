@@ -1,4 +1,3 @@
-
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
@@ -14,12 +13,13 @@ var Players = [];
 serv.listen(2000);
 console.log("Server started");
 
-console.log('Hello world');
-
 var io = require('socket.io')(serv,{});
+exports.serv = serv;
+exports.io = io;
+
 io.on('connection', function(socket){
     console.log('socket connection', socket.id);
-    
+    exports.socket = socket
 
     //Handle Person event
     socket.on('person', function(data){
@@ -41,9 +41,9 @@ io.on('connection', function(socket){
             for(var i = 0; i<PlayerNum; i++){
                 var player = ProperPlayers[i];
                 var id = player.id;
-                 if(player.percivil){
-                    console.log("sending percivil to " +player.name);
-                    io.to(id).emit('percivilPage', {
+                 if(player.percival){
+                    console.log("sending percival to " +player.name);
+                    io.to(id).emit('percivalPage', {
                         p_name: player.name,
                         p_type: player.type,
                         merlin: game.getMerlin()
@@ -55,7 +55,8 @@ io.on('connection', function(socket){
                    io.to(id).emit('merlinPage', {
                        p_name: player.name,
                        p_type: player.type,
-                       badGuys: game.getBadGuys()
+                       badGuys: game.getBadGuys(),
+                       players: game.getPlayers()
                    }); 
                 }
                
@@ -77,7 +78,7 @@ io.on('connection', function(socket){
                     }
                 }
              }
-        }
+         }
         else{
             socket.emit('playererror', {});
         }

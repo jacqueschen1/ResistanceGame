@@ -2,53 +2,53 @@
 
 class Player {
 	constructor(name, socketid){
-	this._Name = name;
-	this._Type = true; //true is good
-	this._Merlin = false;
-	this._Percivil = false;
-	this._Id = socketid;
+	this._name = name;
+	this._type = true; //true is good
+	this._merlin = false;
+	this._percival = false;
+	this._id = socketid;
 	}
 	
 	//Getters
 	get name(){
-		return this._Name;
+		return this._name;
 	}
 	
 	get type(){
-		return this._Type;
+		return this._type;
 	}
 	
 	get merlin(){
-		return this._Merlin;
+		return this._merlin;
 	}
-	get percivil(){
-		return this._Percivil;
+	get percival(){
+		return this._percival;
 	}
 
 	get id(){
-		return this._Id;
+		return this._id;
 	}
 	
 	//Setters
 	
 	set type(newtype){
-		this._Type = newtype;
+		this._type = newtype;
 	}
 	
 	set merlin(ismerlin){
-		this._Merlin = ismerlin;
+		this._merlin = ismerlin;
 	}
 	
-	set percivil(ispercivil){
-		this._Percivil = ispercivil;
+	set percival(ispercivil){
+		this._percival = ispercivil;
 	}
 
 	setmerlin(){
-		this._Merlin = true;
+		this._merlin = true;
 	}
 
-	setpercivil(){
-		this._Percivil = true;
+	setpercival(){
+		this._percival = true;
 	}
 	
 	setbad(){
