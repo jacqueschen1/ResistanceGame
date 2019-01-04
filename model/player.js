@@ -1,70 +1,69 @@
- //Player Object
+// Player Object
 
 class Player {
-	constructor(name, socketid){
-	this._Name = name;
-	this._Type = true; //true is good
-	this._Merlin = false;
-	this._Percivil = false;
-	this._Id = socketid;
-	}
-	
-	//Getters
-	get name(){
-		return this._Name;
-	}
-	
-	get type(){
-		return this._Type;
-	}
-	
-	get merlin(){
-		return this._Merlin;
-	}
-	get percivil(){
-		return this._Percivil;
+	constructor(name, socketid) {
+		this._name = name;
+		this._type = true; // true is good
+		this._merlin = false;
+		this._percival = false;
+		this._id = socketid;
 	}
 
-	get id(){
-		return this._Id;
-	}
-	
-	//Setters
-	
-	set type(newtype){
-		this._Type = newtype;
-	}
-	
-	set merlin(ismerlin){
-		this._Merlin = ismerlin;
-	}
-	
-	set percivil(ispercivil){
-		this._Percivil = ispercivil;
+	// Getters
+	get name() {
+		return this._name;
 	}
 
-	setmerlin(){
-		this._Merlin = true;
+	get type() {
+		return this._type;
 	}
 
-	setpercivil(){
-		this._Percivil = true;
+	get merlin() {
+		return this._merlin;
 	}
-	
-	setbad(){
+	get percival() {
+		return this._percival;
+	}
+
+	get id() {
+		return this._id;
+	}
+
+	// Setters
+
+	set type(newtype) {
+		this._type = newtype;
+	}
+
+	set merlin(ismerlin) {
+		this._merlin = ismerlin;
+	}
+
+	set percival(ispercivil) {
+		this._percival = ispercivil;
+	}
+
+	setmerlin() {
+		this._merlin = true;
+	}
+
+	setpercival() {
+		this._percival = true;
+	}
+
+	setbad() {
 		this.type = false;
 	}
-	
-	//MODIFIES: Round
-	vote(){
-	
-	}
-	
-	//MODIFIES: Round
-	choose(){
+
+	// MODIFIES: Round
+	vote() {
+
 	}
 
+	// MODIFIES: Round
+	choose() {
 
+	}
 }
 
 module.exports = Player;
