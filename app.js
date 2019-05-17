@@ -9,6 +9,7 @@ app.get('/', function(req, res) {
 });
 app.use('/client', express.static(__dirname + '/client'));
 const Players = [];
+let game = undefined;
 
 serv.listen(2000);
 console.log('Server started');
@@ -30,7 +31,7 @@ io.on('connection', function(socket) {
 
 	// Start Game
 	socket.on('startgame', function() {
-		const game = new Game(Players);
+		game = new Game(Players);
 		if (game.checkNumbers()) {
 			game.setMissionNum();
 			game.assignRoles();
@@ -73,9 +74,13 @@ io.on('connection', function(socket) {
 						});
 					}
 				}
-			}
+			}game.startRound();
 		} else {
 			socket.emit('playererror', {});
 		}
+	});
+
+	socket.on('picks selected', function(socket) {
+		// game.getRound().sendChoice(data.players);
 	});
 });
