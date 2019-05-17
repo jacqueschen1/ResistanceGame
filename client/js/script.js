@@ -66,3 +66,7 @@ socket.on('yourTurn', function(data) {
 	', please pick your players';
 	console.log('Msg sent');
 });
+
+socket.emit('picks selected', {
+	players: players,
+});

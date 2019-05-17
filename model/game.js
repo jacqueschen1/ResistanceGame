@@ -11,6 +11,7 @@ class Game {
 		this.defeatCount = 0;
 		this.missionNum = null;
 		this.turn = 0;
+		this.round = null;
 	}
 
 	getPlayers() {
@@ -61,24 +62,24 @@ class Game {
 
 	setMissionNum() {
 		if (this.players.length == 5) {
-			return Preset.twoOne;
+			this.missionNum = Preset.fivep;
 		}
 		if (this.players.length == 6) {
-			return Preset.twoOne;
+			this.missionNum = Preset.sixp;
 		}
 		if (this.players.length == 7) {
-			return Preset.twoOne;
+			this.missionNum = Preset.sevenp;
 		}
 		if (this.players.length == 8) {
-			return Preset.threeOne;
+			this.missionNum = Preset.eightp;
 		}
 		if (this.players.length == 9) {
-			return Preset.threeOne;
+			this.missionNum = Preset.ninep;
 		}
 		if (this.players.length == 10) {
-			return Preset.threeOne;
+			this.missionNum = Preset.tenp;
 		} else {
-			alert('Not enough/Too many players!');
+			console.log('not enough players!');
 		};
 	}
 
@@ -118,16 +119,21 @@ class Game {
 	}
 
 	startRound() {
+		console.log(this.missionNum);
 		if (this.missionNum != null) {
 			const turn = (this.turn % (this.players.length));
 			console.log('round start');
-			const round = new Round(this.players[turn]);
+			this.round = new Round(this.players[turn], this);
 			// if(round.passed()){
 			//	this.PassCount++;
 			// }else{
 			//	this.DefeatCount++;
 			// }
 		}
+	}
+
+	getRound() {
+		return this.round;
 	}
 	// checkGameOver(){
 	// 	var list = roundresults;
